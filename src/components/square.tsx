@@ -15,7 +15,7 @@ export const Square: FunctionComponent<Props> = (props)  => {
 
     React.useEffect(() => {
         ctx.fillRect(x, y, size, size);
-    }, [ctx]);
+    });
 
     return <></>;
 };

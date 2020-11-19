@@ -1,15 +1,15 @@
 import * as React from 'react';
-import {FunctionComponent, useCallback} from "react";
+import {CSSProperties, FunctionComponent, useCallback} from "react";
 import { CanvasContext } from '../contexts';
 
 interface Props {
-    height?: string,
-    width?: string,
-    fullscreen?: boolean
+    height?: number,
+    width?: number,
+    style?: CSSProperties
 }
 
 export const Scene: FunctionComponent<Props> = (props)  => {
-    const { height, width, children, fullscreen } = props;
+    const { height, width, children, style } = props;
 
     const [context, setContext] = React.useState();
 
@@ -21,7 +21,7 @@ export const Scene: FunctionComponent<Props> = (props)  => {
 
     return (
         <CanvasContext.Provider value={context}>
-            <canvas ref={ref} height={fullscreen ? '100vh' : height} width={fullscreen ? '100%' : width}>
+            <canvas ref={ref} height={height} width={width} style={style}>
             </canvas>
             {context && (
                 <>{children}</>
