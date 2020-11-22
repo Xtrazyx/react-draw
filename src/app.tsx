@@ -1,60 +1,34 @@
 import * as React from 'react';
 import { Scene } from "./components/scene";
-import { Square } from "./components/square";
 import styled from 'styled-components';
+import { Maison } from './components/maison';
 import {Circle} from "./components/circle";
-import { Line } from './components/line';
-import {Rectangle} from "./components/rectangle";
-import {Polygon} from "./components/polygon";
+import {Line} from "./components/line";
 
 const Container = styled.div`
     position: relative
 `;
 
-const hauteurScene = 800;
-const largeurScene = 800;
-
-const distanceFenetre = 55;
-const rayonFenetre = 25;
-
-const hauteurToit = 125;
-
-const largeurMaison = 350;
-const positionMaison = { x: 150, y: hauteurScene - largeurMaison };
-
-const hauteurPorte = 100;
-const largeurPorte = 55;
-const positionPorte = { x: positionMaison.x + largeurMaison / 2 - largeurPorte / 2, y: hauteurScene - hauteurPorte };
-
 export default function App(){
+    const hauteurScene = 800;
+    const largeurScene = 800;
+
     return (
         <Container>
             <Scene height={hauteurScene} width={largeurScene} style={{backgroundColor: '#41b1f7'}}>
-                <Square
-                    size={largeurMaison}
-                    y={positionMaison.y}
-                    x={positionMaison.x}
-                    color={'#e1e1e1e1'}
-                />
-                <Rectangle
-                    x={positionPorte.x}
-                    y={positionPorte.y}
-                    xLength={largeurPorte}
-                    yLength={hauteurPorte}
-                    color={'rgba(108,44,9,0.88)'}
-                />
-                <Polygon coordinates={[
-                        positionMaison,
-                        { x: positionMaison.x + largeurMaison, y: positionMaison.y },
-                        { x: positionMaison.x + largeurMaison / 2, y: hauteurScene - largeurMaison - hauteurToit }
-                    ]}
-                />
                 <Circle
-                    radius={rayonFenetre}
-                    x={ positionMaison.x + largeurMaison / 2}
-                    y={hauteurScene - largeurMaison + distanceFenetre }
-                    color={'rgba(113,113,113,0.88)'}
+                    radius={80}
+                    x={200}
+                    y={200}
+                    color={'rgba(255,231,44)'}
                 />
+                <Line x={200} y={40} toX={200} toY={360} thickness={10} color={'rgba(255,231,44)'}/>
+                <Line x={40} y={200} toX={360} toY={200} thickness={10} color={'rgba(255,231,44)'}/>
+                <Line x={80} y={80} toX={320} toY={320} thickness={10} color={'rgba(255,231,44)'}/>
+                <Line x={320} y={80} toX={80} toY={320} thickness={10} color={'rgba(255,231,44)'}/>
+                <Maison x={250} y={450} width={350}/>
+                <Maison x={80} y={360} width={105}/>
+                <Maison x={550} y={200} width={150}/>
             </Scene>
         </Container>
     )
