@@ -6,11 +6,12 @@ interface Props {
     height?: number,
     width?: number,
     style?: CSSProperties,
-    fullscreen?: boolean
+    fullscreen?: boolean,
+    onClick?: React.MouseEventHandler,
 }
 
 export const Scene: FunctionComponent<Props> = (props)  => {
-    const { height, width, children, fullscreen, style } = props;
+    const { height, width, children, fullscreen, style, onClick } = props;
 
     const [context, setContext] = React.useState();
 
@@ -31,6 +32,7 @@ export const Scene: FunctionComponent<Props> = (props)  => {
                 height={fullScreenSize?.height || height}
                 width={fullScreenSize?.width || width}
                 style={style}
+                onClick={onClick}
             >
             </canvas>
             {context && (
