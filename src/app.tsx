@@ -70,7 +70,11 @@ export default function App(){
                     console.log('collision with', id);
                     setState({
                         ...state,
-                        [id]: { ...collider, hueRotation: (collider.hueRotation || 0) + 10 }
+                        [id]: {
+                            ...collider,
+                            hueRotation: (collider.hueRotation || 0) + 10,
+                            width: collider.width + 50
+                        }
                     })
                 }
             }
@@ -96,6 +100,7 @@ export default function App(){
                 height={hauteurScene}
                 width={largeurScene}
                 style={{backgroundColor: '#41b1f7'}}
+                fullscreen={true}
             >
                 <Circle
                     radius={80}
