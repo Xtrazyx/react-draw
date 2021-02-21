@@ -1,25 +1,34 @@
-# Welcome to the Power Grid
+# Welcome to the React Draw
 
-A nice R&D project to investigate the power of a data and display generic grid.
+Draw in canvas with React component
 
-## Features - TODO
+## Features
 
-PowerGrid
-* cells state management
-* data read and assign to cell via coordinates
-* calculation via formula parser
-* display component injection via display registry
-* data validation and format via formatter registry
-* copy cell
-* reference cell
+### Scene wrapper
+    `<Scene
+         onClick={handleClick}
+         height={500}
+         width={500}
+         style={{backgroundColor: '#41b1f7'}}
+         fullscreen={true}
+    >
+        <Circle
+            radius={80}
+            x={200}
+            y={200}
+            color={'rgba(255,231,44)'}
+        />
+        <Line x={200} y={40} toX={200} toY={360} thickness={10} color={'rgba(255,231,44)'}/>
+    </Scene>
+`
 
-PowerGridCell
-* inner state management
-* data injection into instanced component
-* manage standard display
-* manage standard input
+### Primitives
+* line
+* circle
+* polygon
+* rectangle
+* square
 
-Data Types
-* string
-* number
-* files
+### Complex
+* house
+

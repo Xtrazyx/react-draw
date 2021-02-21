@@ -2,8 +2,11 @@ import * as React from 'react';
 import styled from 'styled-components';
 import { Scene } from "./components/scene";
 import { Maison } from './components/maison';
-import {Circle} from "./components/circle";
-import {Line} from "./components/line";
+import { Circle } from "./components/circle";
+import { Line } from "./components/line";
+import { Square } from "./components/square";
+import { Polygon } from "./components/polygon";
+import { Rectangle } from "./components/rectangle";
 
 const Container = styled.div`
     position: relative;
@@ -32,8 +35,8 @@ export default function App(){
 
     const initialState: State = {
         m1: {
-            x: 250,
-            y: 450,
+            x: 650,
+            y: 550,
             height: 350,
             width: 350,
         },
@@ -44,8 +47,8 @@ export default function App(){
             width: 105,
         },
         m3: {
-            x: 550,
-            y: 200,
+            x: 600,
+            y: 250,
             height: 150,
             width: 150,
         }
@@ -73,7 +76,8 @@ export default function App(){
                         [id]: {
                             ...collider,
                             hueRotation: (collider.hueRotation || 0) + 10,
-                            width: collider.width + 50
+                            width: collider.width + 50,
+
                         }
                     })
                 }
@@ -93,6 +97,51 @@ export default function App(){
         return target >= min && target <= max;
     }
 
+    function Scene1() {
+        return ( <>
+            <Circle
+                radius={80}
+                x={200}
+                y={200}
+                color={'rgba(255,231,44)'}
+            />
+            <Line x={200} y={40} toX={200} toY={360} thickness={10} color={'rgba(255,231,44)'}/>
+            <Line x={40} y={200} toX={360} toY={200} thickness={10} color={'rgba(255,231,44)'}/>
+            <Line x={80} y={80} toX={320} toY={320} thickness={10} color={'rgba(255,231,44)'}/>
+            <Line x={320} y={80} toX={80} toY={320} thickness={10} color={'rgba(255,231,44)'}/>
+
+            {Object.entries(state).map(([key, collider]) =>
+                <Maison key={key} {...collider}/>
+            )}
+            <Polygon
+                color={'#0001ff'}
+                coordinates={[
+                    { x: 10, y: 20 },
+                    { x: 35, y: 125 },
+                    { x: 55, y: 95 },
+                    { x: 105, y: 85 }]
+                }
+            />
+        </>)
+    }
+
+    function Scene2() {
+        return ( <>
+                <Square x={200} y={400} size={400} color={'#0001ff'} />
+                <Rectangle x={400} y={650} xLength={100} yLength={150} color={'#cd46bf'}/>
+                <Polygon
+                    color={'#baff7b'}
+                    coordinates={[
+                        { x: 200, y: 400 },
+                        { x: 300, y: 200 },
+                        { x: 500, y: 200 },
+                        { x: 600, y: 400 }]
+                    }
+                />
+            </>
+        )
+    }
+
     return (
         <Container>
             <Scene
@@ -102,20 +151,8 @@ export default function App(){
                 style={{backgroundColor: '#41b1f7'}}
                 fullscreen={true}
             >
-                <Circle
-                    radius={80}
-                    x={200}
-                    y={200}
-                    color={'rgba(255,231,44)'}
-                />
-                <Line x={200} y={40} toX={200} toY={360} thickness={10} color={'rgba(255,231,44)'}/>
-                <Line x={40} y={200} toX={360} toY={200} thickness={10} color={'rgba(255,231,44)'}/>
-                <Line x={80} y={80} toX={320} toY={320} thickness={10} color={'rgba(255,231,44)'}/>
-                <Line x={320} y={80} toX={80} toY={320} thickness={10} color={'rgba(255,231,44)'}/>
-
-                {Object.entries(state).map(([key, collider]) =>
-                    <Maison key={key} {...collider}/>
-                )}
+                <Scene1/>
+                <Scene2/>
             </Scene>
         </Container>
     )
